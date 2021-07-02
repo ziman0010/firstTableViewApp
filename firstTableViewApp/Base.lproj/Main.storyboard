@@ -63,6 +63,7 @@
                                     <outlet property="descriptionLabel" destination="H2E-lt-qsc" id="vhh-zi-2di"/>
                                     <outlet property="emojiLabel" destination="fTF-Cq-lca" id="b9g-ia-aaY"/>
                                     <outlet property="nameLabel" destination="Ylk-Ab-K2p" id="u2L-Ur-4c4"/>
+                                    <segue destination="gvd-vE-S2Y" kind="show" identifier="cellEditing" id="4ea-7h-iQu"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -74,7 +75,7 @@
                     <navigationItem key="navigationItem" id="GAY-Zo-jou">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="hVJ-Q5-1NF">
                             <connections>
-                                <segue destination="gvd-vE-S2Y" kind="show" id="kuF-kg-aIa"/>
+                                <segue destination="gvd-vE-S2Y" kind="show" identifier="cellAdding" id="kuF-kg-aIa"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -244,6 +245,9 @@
             <point key="canvasLocation" x="1555.072463768116" y="133.92857142857142"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="kuF-kg-aIa"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

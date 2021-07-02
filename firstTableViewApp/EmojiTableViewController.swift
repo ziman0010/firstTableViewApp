@@ -13,6 +13,22 @@ class EmojiTableViewController: UITableViewController {
         Emoji(emoji: "⚽️", name: "Football", description: "Let's play football together", isFavourite: false),
         Emoji(emoji: "🐱", name: "Cat", description: "Cat is the cutest animal", isFavourite: false)
     ]
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        let navigationVC = segue.destination as! UINavigationController
+        let dVC = navigationVC.topViewController as! NewEmojiTableViewController
+        if segue.identifier == "cellEditing"
+        {
+            let indexPath = tableView.indexPathForSelectedRow!
+            dVC.emoji = objects[indexPath.row]
+            dVC.svcIdentifier = "cellEditing"
+            
+        }
+        else if segue.identifier == "cellAdding"
+        {
+            dVC.svcIdentifier = "cellAdding"
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,9 +48,17 @@ class EmojiTableViewController: UITableViewController {
         let svc = segue.source as? NewEmojiTableViewController
         if let emoji = svc?.emoji
         {
-            objects.append(emoji)
-            let newIndexPath = IndexPath(row: objects.count - 1, section: 0)
-            tableView.insertRows(at: [newIndexPath], with: .fade)
+            if svc?.svcIdentifier == "cellEditing" {
+                let selectedIndexPath = tableView.indexPathForSelectedRow!
+                objects[selectedIndexPath.row] = emoji
+                tableView.reloadRows(at: [selectedIndexPath], with: .fade)
+            }
+            else if svc?.svcIdentifier == "cellAdding"
+            {
+                objects.append(emoji)
+                let newIndexPath = IndexPath(row: objects.count - 1, section: 0)
+                tableView.insertRows(at: [newIndexPath], with: .fade)
+            }
         }
         
     }
